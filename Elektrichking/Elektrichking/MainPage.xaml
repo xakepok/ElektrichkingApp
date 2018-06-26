@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Elektrichking"
+             x:Class="Elektrichking.MainPage">
+
+    <StackLayout>
+        <Label
+                x:Name="dataStatus"
+                Text="{Binding Status}"
+                HorizontalOptions="Center" />
+        <Entry
+            Placeholder="Название станции..."
+            x:Name="filterStation"
+            TextChanged="onFilterStation"/>
+        <ListView x:Name="directionsList"
+                  ItemsSource="{Binding Stations}"
+                  HasUnevenRows="True"
+                  ItemSelected="ToWayoutPage">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                        Text="{Binding name}"
+                        Detail="{Binding direction}"
+                        DetailColor="{Binding color}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label
+            x:Name="prodVersion"
+            HorizontalOptions="End"
+            Text="{Binding Vrs}"/>
+    </StackLayout>
+
+</ContentPage>
